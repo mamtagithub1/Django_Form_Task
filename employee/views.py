@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect 
 from employee.forms import EmployeeForm  
-from employee.models import Employee  
+from employee.models import Employee,Video
 # Create your views here.
 
 def emp(request):  
@@ -34,4 +34,8 @@ def destroy(request, id):
     employee = Employee.objects.get(id=id)  
     employee.delete()  
     return redirect("/show")  
+
+def show_videos(request):
+    video=Video.objects.all()
+    return render(request,"showvids.html",{"video":video})
 

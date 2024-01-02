@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from employee import views 
+# for videos/file uploadation import below's
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,4 +29,8 @@ urlpatterns = [
     path('edit/<int:id>', views.edit),  
     path('update/<int:id>', views.update),  
     path('delete/<int:id>', views.destroy), 
+    path('videos', views.show_videos), 
 ]
+# condition add
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
